@@ -1,30 +1,59 @@
+#define _GNU_SOURCE
 #include <stdio.h>
+int BinarySearch(int a, int n, int *arr);
+int cmpfunc(const void *a , const void *b);
 
 int main(){
-    int arr[] = {12, 23, 35, 41, 50, 68, 72, 87, 99, 177};
-    int low, high, mid, a, n;
-
-    printf("which number are u looking for? ");
-    scanf("%d", &a);
-    n = sizeof(arr) / sizeof(arr[0]);
-    mid = (n-1)/2;
-    for(int i = 0; i < n; i++)
+    int x, size;
+    printf("enter the number of elements in the array: ");
+    scanf("%d", &size);
+    int numbers[size];
+    //getting the array from the user
+    for (int i = 0; i < size; i++)
     {
-        if(a== arr[mid]){
-            printf("element found at %d index", mid);
+        printf("enter the element: ");
+        scanf("%d", numbers[i]);
+    }
+    printf("enter the element you want to search for: ");
+    scanf("%d", &x);
+    //sorting the array
+    qsort(numbers, size, sizeof(int), cmpfunc);
+    //printing the sorted array
+    for (int i = 0; i < size; i++)
+    {
+        printf("%d", numbers[i]);
+    }
+    printf("index found at: %d", BinarySearch(x, size, numbers));
+}
+
+int BinarySearch(int a, int n, int *arr)
+{
+    int low, high, mid;
+    mid = (n - 1) / 2;
+    for (int i = 0; i < n; i++)
+    {
+        if (a == arr[mid])
+        {
+            return mid;
             break;
         }
 
         else if (a > arr[mid])
         {
             low = mid;
-            high = (n-1);
+            high = (n - 1);
         }
-        
-        else {
+
+        else
+        {
             low = 0;
             high = mid;
         }
         mid = (low + high) / 2;
     }
+}
+
+int cmpfunc(const void *a , const void *b)
+{
+    return( *(int*)a - *(int*)b);
 }

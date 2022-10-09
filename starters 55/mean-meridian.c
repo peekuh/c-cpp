@@ -1,19 +1,20 @@
-#include <iostream>
-using namespace std;
+#include <stdio.h>
+
 
 int main()
 {
-    int T, x, y, a, b, c;
+    int T, x, y;
     for (int i = 0; i < T; i++)
     {
-        cin >> x >> y; // x is mean y is median
+        scanf("%d %d", x, y);
         for (int i = y; ; i++)
         {
             for (int j = y; ; j++)
             {
                 if (i + j == 3*x - y)
                 {
-                    cout << i << y << j;
+                    printf("%d %d %d", i, y, j);
+                    break;
                 }
             }
         }

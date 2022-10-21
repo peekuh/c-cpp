@@ -4,7 +4,7 @@
 //creating the node data type using a self referential structure
 struct node {
     int data;
-    struct node *link;
+    struct node *link; //pointer that points to struct node
 };
 
 int main()
@@ -17,7 +17,7 @@ int main()
     //address of block of memory allocated for first node to "head"
     head = (struct node*)malloc(sizeof(struct node));
     second = (struct node*)malloc(sizeof(struct node));
-    third = (struct node*)v(sizeof(struct node));
+    third = (struct node*)malloc(sizeof(struct node));
 
     //accessing struct members using arrow operator
     head->data = 45;

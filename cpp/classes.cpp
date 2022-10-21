@@ -14,9 +14,10 @@ public:
     {
         cout << "switch: " << switchType << endl;
         cout << "lubed? "  << lubed << endl;
+        cout << "size: " << size << endl;
         cout << "layout: " << layout << endl;
     }
-    //setter function for cost variable
+    // setter function for cost variable
     void set_cost(int potential_cost)
     {
         if (potential_cost < 0) cost = 0;
@@ -29,11 +30,23 @@ public:
     }
     //getter function to get discounted price
     void print_discount(float discount)
+
     {
         cout << "price after discount is: " << calculate_discount(discount) << endl;
     }
+    
+    //defining a constructor (called when class variable is created \) 
+    
+    keyboard(string switches, bool lube, int ksize)
+    {
+        switchType = switches;
+        lubed = lube;
+        size = ksize;
+        layout = "ISO";
+    }
+
 private:
-    //cost decalred as private to prevent stupid values being assigned to cost. like 34rs
+    //cost declared as private to prevent stupid values being assigned to cost. like 34rs
     int cost;
 
     float calculate_discount(float discount)
@@ -45,11 +58,11 @@ private:
 
 int main()
 {
-    keyboard tvsgold;
-    tvsgold.switchType = "chery mx red";
-    tvsgold.lubed = false;
-    tvsgold.size = 100;
-    tvsgold.layout = "ISO";
+    keyboard tvsgold("CHERRY MX RED", false, 100);
+    // tvsgold.switchType = "chery mx red";
+    // tvsgold.lubed = false;
+    // tvsgold.size = 100;
+    // tvsgold.layout = "ISO";
     tvsgold.print_details();
     tvsgold.set_cost(1300);
     cout << "cost of tvs gold is: " << tvsgold.get_cost() << endl;

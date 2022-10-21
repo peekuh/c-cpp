@@ -9,7 +9,9 @@ struct node {
 int length(struct node* head);
 void printData(struct node *head);
 struct node* lastInsert(struct node *head, int a);
-struct node *firstInsert(struct node *head, int a);
+struct node* firstInsert(struct node *head, int a);
+struct node *midInsert(struct node *head, int a, int position);
+struct node *delete (struct node *head, int position);
 
 int main()
 {
@@ -38,8 +40,13 @@ int main()
     lastInsert(head, 90);
     printf("%d\n", head);
     head = firstInsert(head, 78);
-    printData(head);    
-    
+    printData(head);
+    midInsert(head, 69, 3);
+    printf("list after inserting:\n");
+    printData(head);
+    delete(head, 7);
+    printf("list after deletion: \n");
+    printData(head);
 }
 
 int length(struct node* head)
@@ -103,4 +110,46 @@ struct node* firstInsert(struct node* head, int a)
     ptr->link = head;
     head = ptr;
     return head;
+}
+
+struct node* midInsert(struct node* head, int a, int position)
+{
+    //creating variable to traverse the list 
+    struct node* current = (struct node*)malloc(sizeof(struct node));
+    current = head;
+    //traversing up until the node before the position where new node has to be inserted
+    for(int i = 1; i < position - 1; i++)
+    { 
+        current = current->link;
+    }
+    //current now holds the address of the node before position node
+    //create new node 
+    struct node* temp = (struct node*)malloc(sizeof(struct node));
+    temp->data = a;
+    //assigning new node's link to address of node currently at position
+    temp->link = current->link;
+    //assigning the link of the node before position to temp
+    current->link = temp;
+}
+
+struct node* delete(struct node* head, int position)
+{
+    struct node* temp;
+    if (position == 1)
+    {
+        temp = head;
+        head  = head->link;
+        free(temp);
+    }
+    else 
+    {
+        struct node* current = head;
+        for(int i = 1; i < position - 1; i++)
+        {
+            current = current->link;
+        }
+        temp = current->link;
+        current->link = current->link->link;
+        free(temp);
+    }
 }

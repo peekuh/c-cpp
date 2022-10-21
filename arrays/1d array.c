@@ -1,4 +1,5 @@
 #include <stdio.h>
+void insert(int array, int element, int index);
 
 int main(void)
 {
@@ -17,4 +18,20 @@ int main(void)
     }
 
 
+
+}
+
+void insert(int array, int element, int index) 
+{
+    int n = sizeof(array)/sizeof(int);
+    for(int i = n - 1; i > index - 1; i--)
+    {
+        array[i + 1] = array[i];
+    }
+    array[index-1] = element;
+}
+
+void delete(int array, int index)
+{
+    
 }
